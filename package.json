@@ -1,0 +1,25 @@
+{
+  "name": "homeovet-app",
+  "version": "0.1.0",
+  "description": "HomeoVet — Base educacional de homeopatia veterinária: web app (React), API (Node/Express), Electron desktop, MCP server e GitHub Pages",
+  "main": "electron/main.js",
+  "type": "commonjs",
+  "scripts": {
+    "install:all": "npm install && npm --prefix frontend install && npm --prefix backend install && npm --prefix mcp install",
+    "build": "npm run build:frontend && npm run build:backend",
+    "build:frontend": "npm --prefix frontend run build",
+    "build:backend": "npm --prefix backend run build",
+    "dev": "concurrently \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\"",
+    "start": "npm --prefix backend start",
+    "electron": "npm --prefix electron start",
+    "mcp": "npm --prefix mcp start",
+    "deploy:pages": "gh-pages -d dist"
+  },
+  "keywords": ["homeopatia", "veterinaria", "react", "electron", "mcp", "node"],
+  "author": "Jean Avila",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^9.0.0",
+    "gh-pages": "^6.1.1"
+  }
+}
