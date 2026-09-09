@@ -36,6 +36,9 @@ jobs:
       - name: Gerar base.json (após o build, pois o Vite limpa o dist)
         run: npm --prefix backend run build
 
+      - name: Copiar CNAME para dist (domínio customizado)
+        run: cp CNAME dist/CNAME
+
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
