@@ -30,14 +30,11 @@ jobs:
           npm install
           npm --prefix frontend install
 
-      - name: Gerar base.json
-        run: npm --prefix backend run build
-
       - name: Build frontend (React)
         run: npm run build:frontend
 
-      - name: Copiar base.json para dist
-        run: cp dist/base.json dist/base.json
+      - name: Gerar base.json (após o build, pois o Vite limpa o dist)
+        run: npm --prefix backend run build
 
       - uses: actions/configure-pages@v5
 
