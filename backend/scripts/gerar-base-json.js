@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SRC = path.join(__dirname, '..', '..', '..', 'homeovet', 'index.html');
+const SRC = path.join(__dirname, '..', '..', 'frontend', 'src', 'index.html');
 const DEST = path.join(__dirname, '..', '..', 'dist', 'base.json');
 
 if (!fs.existsSync(SRC)) {
