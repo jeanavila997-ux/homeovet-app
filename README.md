@@ -1,8 +1,17 @@
 # 🐾 HomeoVet — Base Educacional de Homeopatia Veterinária
 
-App web + desktop + MCP para consulta educacional de homeopatia veterinária: **124 medicamentos**, evidências científicas, regulamentação brasileira e glossário.
+App web + desktop + API + MCP para consulta educacional de homeopatia veterinária: **124 medicamentos**, evidências científicas, regulamentação brasileira e glossário — tudo servido a partir de uma única fonte de dados.
+
+| Superfície | Tecnologia |
+|---|---|
+| 🌐 Web | React 18 + Vite (GitHub Pages) |
+| 🔌 API REST | Node.js + Express |
+| 🖥️ Desktop | Electron |
+| 🤖 MCP Server | Model Context Protocol (stdio) |
 
 > ⚠️ **USO ESTRITAMENTE EDUCACIONAL** — NÃO diagnostica, NÃO prescreve, NÃO substitui o médico-veterinário.
+
+---
 
 ## 🚀 Stack
 
@@ -11,8 +20,8 @@ App web + desktop + MCP para consulta educacional de homeopatia veterinária: **
 | Frontend | React 18 + Vite | `frontend/` |
 | Backend | Node.js + Express | `backend/` |
 | Desktop | Electron | `electron/` |
-| MCP Server | Model Context Protocol (SDK) | `mcp/` |
-| Build estático | `dist/` (GitHub Pages) | `dist/` |
+| MCP Server | MCP SDK | `mcp/` |
+| Build estático | Vite → GitHub Pages | `dist/` |
 
 ## 📦 Instalação
 
@@ -27,9 +36,9 @@ npm run mcp             # MCP server (stdio)
 
 ## 🌐 GitHub Pages
 
-O workflow `.github/workflows/deploy-pages.yml` publica `dist/` automaticamente a cada push na `main`.
+O workflow `.github/workflows/deploy-pages.yml` publica `dist/` a cada push na `main`.
 
-URL: `https://jeanavila997-ux.github.io/homeovet-app/`
+URL: `https://jeanavila997-ux.github.io/homeovet-app/` · Domínio próprio: `homeovet.vitrinedeapps.cloud`
 
 ## 🤖 MCP para agentes
 
@@ -42,7 +51,7 @@ O MCP server expõe 6 tools para agentes de IA (Claude, Hermes, etc.):
 - `buscar_regulamentacao` — CFMV/MAPA/Anvisa
 - `buscar_glossario` — termos
 
-Configuração no cliente MCP (ex.: Claude Desktop / Hermes):
+Configuração no cliente MCP:
 
 ```json
 {
@@ -53,22 +62,6 @@ Configuração no cliente MCP (ex.: Claude Desktop / Hermes):
     }
   }
 }
-```
-
-## 📁 Estrutura
-
-```
-homeovet-app/
-├── frontend/          # React + Vite
-│   └── src/           # App.jsx, main.jsx, styles.css
-├── backend/           # Express API
-│   ├── src/server.js  # API REST (/api/*)
-│   └── scripts/       # gerar-base-json.js
-├── electron/          # App desktop
-├── mcp/               # MCP server (stdio)
-├── dist/              # Build estático (GitHub Pages)
-├── docs/              # Documentação
-└── .github/workflows/ # CI/CD
 ```
 
 ## 🔌 API
@@ -83,6 +76,24 @@ homeovet-app/
 | `GET /api/regulamentacao` | Regulamentação |
 | `GET /api/glossario` | Glossário |
 | `GET /api/health` | Health check |
+
+---
+
+## 📁 Estrutura
+
+```
+homeovet-app/
+├── frontend/          # React + Vite
+│   └── src/           # App.jsx, main.jsx, styles.css, index.html (fonte de dados)
+├── backend/           # Express API
+│   ├── src/server.js  # API REST (/api/*)
+│   └── scripts/       # gerar-base-json.js
+├── electron/          # App desktop
+├── mcp/               # MCP server (stdio)
+├── dist/              # Build estático (GitHub Pages)
+├── docs/              # Documentação (PLANO.md)
+└── .github/workflows/ # CI/CD
+```
 
 ## 📚 Conteúdo
 
@@ -101,6 +112,8 @@ homeovet-app/
 - [ ] Animações React (Framer Motion)
 - [ ] Tutor IA com RAG (Ollama)
 - [ ] Fichas dos produtos CMR/Real H
+
+---
 
 ## 📄 Licença
 
