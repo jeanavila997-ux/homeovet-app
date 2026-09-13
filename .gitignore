@@ -34,3 +34,9 @@ __pycache__/
 .Python
 venv/
 .venv/
+# Agent runtime telemetry (high-churn state; keeps repo clean)
+.claude/learning/
+.cursor/learning/
+.kiro/learning/
+.cursor/.hooks.json.tmp-*
+*.snapshot.json
