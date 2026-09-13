@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "profileType": "solo-dev",
+  "detectedFrom": {
+    "gitRemotes": [
+      "https://github.com/jeanavila997-ux/homeovet-app.git"
+    ],
+    "teamSize": "small",
+    "aiTools": [
+      "claude"
+    ],
+    "budgetPattern": "none",
+    "hasSharedClaudeSkills": false,
+    "isGitRepo": true,
+    "branchCount": 1,
+    "trackedFileCount": 30,
+    "repoSizeKb": 0,
+    "commitsLast30d": 10,
+    "commitsTotal": 10,
+    "projectAgeDays": 0,
+    "authorCount30d": 2,
+    "activityLevel": "moderate",
+    "hasAidlcWorkflow": false,
+    "hasPendingProfileInit": false,
+    "remoteReachable": true,
+    "remoteOriginUrl": "https://github.com/jeanavila997-ux/homeovet-app.git",
+    "remoteBranchCount": 2,
+    "remoteAuthors30d": 2,
+    "upstreamAhead": 0,
+    "upstreamBehind": 0,
+    "remoteProbeSource": "cache"
+  },
+  "enabledFeatures": {
+    "autoOptimizer": false
+  },
+  "costTracking": "minimal",
+  "confidence": 1,
+  "detectedAt": "2026-09-10T12:06:38.168Z",
+  "appliedAt": "2026-09-10T12:06:38.168Z",
+  "manualOverride": "solo-dev",
+  "userPlan": "solo-focused",
+  "rationale": "Git analysis: 30 tracked files, 2 branches (1 local, 2 remote), 10 commits (10 last 30d), 2 authors (30d), moderate activity, ~1 KB git objects. Remote git (https://github.com/jeanavila997-ux/homeovet-app.git): 2 remote branches, 2 remote authors (30d), via cache. Plan: solo focused — Solo developer."
+}
