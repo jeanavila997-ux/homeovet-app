@@ -5,13 +5,14 @@
   "main": "electron/main.js",
   "type": "commonjs",
   "scripts": {
-    "install:all": "npm install && npm --prefix frontend install && npm --prefix backend install && npm --prefix mcp install",
+    "install:all": "npm install && npm --prefix frontend install && npm --prefix backend install && npm --prefix mcp install && npm --prefix electron install",
     "build": "npm run build:frontend && npm run build:backend",
     "build:frontend": "npm --prefix frontend run build",
     "build:backend": "npm --prefix backend run build",
     "dev": "concurrently \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\"",
     "start": "npm --prefix backend start",
     "electron": "npm --prefix electron start",
+    "electron:build": "npm run build && npm --prefix electron run build:win",
     "mcp": "npm --prefix mcp start",
     "deploy:pages": "gh-pages -d dist"
   },

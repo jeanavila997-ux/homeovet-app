@@ -1,6 +1,16 @@
-```
 # Dependencies
 node_modules/
+
+# Electron builds & installers
+electron/dist-app/
+electron/build-out/
+electron/release/
+*.exe
+*.blockmap
+
+# IDE plugins assets
+dist/plugins/
+frontend/public/plugins/
 
 # Environment
 .env
@@ -24,6 +34,3 @@ __pycache__/
 .Python
 venv/
 .venv/
-.env
-.env.local
-```
