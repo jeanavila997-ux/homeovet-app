@@ -32,9 +32,10 @@ const CACHE_TTL = 60000; // 1 minuto
 const normCache = new Map();
 const norm = (s) => {
   if (!s) return '';
-  if (normCache.has(s)) return normCache.get(s);
-  const normalized = s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-  normCache.set(s, normalized);
+  const value = String(s);
+  if (normCache.has(value)) return normCache.get(value);
+  const normalized = value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  normCache.set(value, normalized);
   return normalized;
 };
 
@@ -81,7 +82,13 @@ app.get('/api/medicamentos', (req, res) => {
       m.nome, 
       m.nome_popular, 
       m.categoria, 
-      (m.sintomas_homeopaticos || []).join(' ')
+      m.origem,
+      m.principio_ativo_declarado,
+      (m.sintomas_homeopaticos || []).join(' '),
+      m.indicacoes_fabricante,
+      m.uso_veterinario,
+      m.contraindicacoes,
+      m.precaucoes
     ].join(' '));
     return alvo.includes(q);
   });
