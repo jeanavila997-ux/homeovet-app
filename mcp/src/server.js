@@ -16,7 +16,15 @@ try {
   process.exit(1);
 }
 
-const norm = s => (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+const normCache = new Map();
+const norm = (s) => {
+  if (!s) return '';
+  const value = String(s);
+  if (normCache.has(value)) return normCache.get(value);
+  const normalized = value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  normCache.set(value, normalized);
+  return normalized;
+};
 
 const server = new McpServer({
   name: 'homeovet',
@@ -33,7 +41,18 @@ server.tool(
     const q = norm(query);
     const meds = base.medicamentos.filter(m => {
       const okCat = !categoria || m.categoria === categoria;
-      const alvo = norm([m.nome, m.nome_popular, m.categoria, (m.sintomas_homeopaticos || []).join(' ')].join(' '));
+      const alvo = norm([
+        m.nome,
+        m.nome_popular,
+        m.categoria,
+        m.origem,
+        m.principio_ativo_declarado,
+        (m.sintomas_homeopaticos || []).join(' '),
+        m.indicacoes_fabricante,
+        m.uso_veterinario,
+        m.contraindicacoes,
+        m.precaucoes
+      ].join(' '));
       return okCat && (!q || alvo.includes(q));
     });
     return {
@@ -73,7 +92,7 @@ server.tool(
   async ({ query = '' }) => {
     const q = norm(query);
     const evids = base.evidencias_cientificas.filter(e => {
-      const alvo = norm([e.estudo, e.conclusao, e.nivel_evidencia].join(' '));
+      const alvo = norm([e.estudo, e.conclusao, e.nivel_evidencia, e.relevancia].join(' '));
       return !q || alvo.includes(q);
     });
     return { content: [{ type: 'text', text: JSON.stringify(evids, null, 2) }] };
@@ -88,7 +107,7 @@ server.tool(
   async ({ query = '' }) => {
     const q = norm(query);
     const regs = base.regulamentacao_brasil.filter(r => {
-      const alvo = norm([r.aspecto, r.descricao, r.fonte].join(' '));
+      const alvo = norm([r.aspecto, r.descricao, r.fonte, r.status].join(' '));
       return !q || alvo.includes(q);
     });
     return { content: [{ type: 'text', text: JSON.stringify(regs, null, 2) }] };

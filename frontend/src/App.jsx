@@ -27,9 +27,10 @@ const abaAnim = Object.freeze({
 const normCache = new Map();
 const norm = (s) => {
   if (!s) return '';
-  if (normCache.has(s)) return normCache.get(s);
-  const normalized = s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-  normCache.set(s, normalized);
+  const value = String(s);
+  if (normCache.has(value)) return normCache.get(value);
+  const normalized = value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  normCache.set(value, normalized);
   return normalized;
 };
 
